@@ -1,6 +1,3 @@
-<<<<<<< HEAD
-# sherwin-portfolio
-=======
 # Sherwin Luis Morantte — Portfolio (Next.js)
 
 A rebuild of sherwinluissss.github.io as a Next.js 14 (App Router) + Tailwind CSS site.
@@ -24,5 +21,3 @@ Open http://localhost:3000.
 ```bash
 npm run build
 ```
-
->>>>>>> 245d97b (Initial commit)
