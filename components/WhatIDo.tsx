@@ -105,20 +105,16 @@ export default function WhatIDo() {
 
   return (
     <section
-      className={`${jetbrainsMono.variable} ${inter.variable} bg-[#0B0C10] px-4 py-16 sm:px-6 sm:py-20 lg:py-24`}
+      className="py-20 md:py-24 border-t border-line items-center"
     >
-      <div className="mx-auto max-w-4xl">
+      <div className="mx-auto">
         {/* Heading */}
         <div className="mb-8 sm:mb-10">
-          <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-[#5FA8D3]">
-            // services
-          </p>
-          <h2 className="font-mono text-3xl font-semibold leading-tight text-[#E7E5DE] sm:text-4xl md:text-[2.75rem]">
-            <span className="block text-lg text-[#4B5063] sm:text-xl">/**</span>
+          <div className="eyebrow uppercase">services</div>
+          <h2 className="font-display font-semibold text-[24px] md:text-[32px] mb-5 leading-tight">
             What I Do
-            <span className="block text-lg text-[#4B5063] sm:text-xl">*/</span>
           </h2>
-          <p className="mt-4 max-w-xl font-sans text-[15px] leading-relaxed text-[#8B8F9C]">
+          <p className="text-ink-soft leading-relaxed text-[15.5px] max-w-[44ch] mb-4 last:mb-0">
             Six functions, one goal: websites that are fast, flexible, and built to
             hold up under real business requirements.
           </p>
