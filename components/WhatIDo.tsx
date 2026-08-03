@@ -15,97 +15,92 @@ const inter = Inter({
   variable: '--font-sans',
 });
 
-interface SkillCategory {
-  key: string;
-  label: string;
+interface Service {
+  name: string;
+  fnName: string;
+  file: string;
+  description: string;
   accent: string;
-  skills: string[];
 }
 
-const categories: SkillCategory[] = [
+const services: Service[] = [
   {
-    key: 'wordpress',
-    label: 'WordPress',
+    name: 'Custom WordPress Development',
+    fnName: 'customWordPressDevelopment',
+    file: '~/services/custom-wordpress-development.php',
+    description:
+      'Custom themes, plugins, templates, Gutenberg/ACF components, custom post types, taxonomies, and functionality built around specific business requirements.',
     accent: '#E4A34A',
-    skills: [
-      'WordPress',
-      'Custom Themes',
-      'Custom Plugins',
-      'Advanced Custom Fields',
-      'WooCommerce',
-      'Gravity Forms',
-      'LearnDash',
-      'BuddyBoss',
-      'WP-CLI',
-    ],
   },
   {
-    key: 'frontend',
-    label: 'Frontend',
-    accent: '#4FBFA8',
-    skills: ['HTML5', 'CSS3', 'Sass', 'JavaScript', 'React', 'Next.js', 'Responsive Design'],
-  },
-  {
-    key: 'backend',
-    label: 'Backend',
+    name: 'WooCommerce & eCommerce',
+    fnName: 'wooCommerceAndEcommerce',
+    file: '~/services/woocommerce-ecommerce.php',
+    description:
+      'Custom WooCommerce functionality, product experiences, checkout improvements, integrations, and performance optimization for online stores.',
     accent: '#5FA8D3',
-    skills: ['PHP', 'MySQL', 'REST APIs', 'WordPress REST API'],
   },
   {
-    key: 'headlessAndCms',
-    label: 'Headless & CMS',
+    name: 'Web Integrations',
+    fnName: 'webIntegrations',
+    file: '~/services/web-integrations.js',
+    description:
+      'REST APIs, third-party services, forms, CRM integrations, payment services, analytics, and custom data-driven functionality.',
     accent: '#A78BFA',
-    skills: ['Next.js', 'React', 'Sanity', 'Headless WordPress', 'GROQ'],
   },
   {
-    key: 'performanceAndSeo',
-    label: 'Performance & SEO',
+    name: 'Performance & Optimization',
+    fnName: 'performanceAndOptimization',
+    file: '~/services/performance-optimization.js',
+    description:
+      'Improving Core Web Vitals, page speed, caching, images, database performance, and third-party scripts to create faster and more reliable websites.',
     accent: '#E8795A',
-    skills: [
-      'Core Web Vitals',
-      'PageSpeed Insights',
-      'Technical SEO',
-      'Caching',
-      'CDN',
-      'Image Optimization',
-    ],
   },
   {
-    key: 'devOpsAndWorkflow',
-    label: 'DevOps & Workflow',
-    accent: '#7EC699',
-    skills: ['Git', 'GitHub', 'GitHub Actions', 'CI/CD', 'Vercel', 'Nginx', 'Linux'],
+    name: 'Modern Web Development',
+    fnName: 'modernWebDevelopment',
+    file: '~/services/modern-web-development.tsx',
+    description:
+      'React, Next.js, headless CMS architectures, JavaScript applications, and API-driven web experiences.',
+    accent: '#4FBFA8',
   },
   {
-    key: 'designAndCollaboration',
-    label: 'Design & Collaboration',
+    name: 'Maintenance & Problem Solving',
+    fnName: 'maintenanceAndProblemSolving',
+    file: '~/services/maintenance-problem-solving.sh',
+    description:
+      'Debugging complex WordPress issues, security problems, migrations, hosting issues, plugin conflicts, and ongoing website maintenance.',
     accent: '#E4739B',
-    skills: ['Figma', 'Adobe Photoshop', 'Git-based workflows', 'Remote collaboration'],
   },
 ];
-
-const totalSkills = categories.reduce((sum, c) => sum + c.skills.length, 0);
 
 type Row =
-  | { type: 'brace-open' }
-  | { type: 'root-open' }
-  | { type: 'category'; index: number }
-  | { type: 'root-close' }
-  | { type: 'brace-close' };
+  | { type: 'class-open' }
+  | { type: 'class-close' }
+  | { type: 'blank' }
+  | { type: 'method-open'; index: number }
+  | { type: 'comment'; index: number }
+  | { type: 'method-close'; index: number };
 
-const rows: Row[] = [
-  { type: 'brace-open' },
-  { type: 'root-open' },
-  ...categories.map((_, i) => ({ type: 'category', index: i }) as Row),
-  { type: 'root-close' },
-  { type: 'brace-close' },
-];
-
-function lineNumberFor(index: number) {
-  return rows.findIndex((r) => r.type === 'category' && r.index === index) + 1;
+function buildRows(): Row[] {
+  const rows: Row[] = [{ type: 'class-open' }, { type: 'blank' }];
+  services.forEach((_, i) => {
+    rows.push({ type: 'method-open', index: i });
+    rows.push({ type: 'comment', index: i });
+    rows.push({ type: 'method-close', index: i });
+    if (i < services.length - 1) rows.push({ type: 'blank' });
+  });
+  rows.push({ type: 'class-close' });
+  return rows;
 }
 
-export default function TechnicalSkills() {
+const rows = buildRows();
+
+function lineNumberFor(index: number) {
+  return rows.findIndex((r) => r.type === 'method-open' && r.index === index) + 1;
+}
+
+export default function WhatIDo() {
   const [active, setActive] = useState<number | null>(null);
 
   return (
@@ -116,16 +111,16 @@ export default function TechnicalSkills() {
         {/* Heading */}
         <div className="mb-8 sm:mb-10">
           <p className="mb-3 font-mono text-xs uppercase tracking-[0.25em] text-[#5FA8D3]">
-            // stack
+            // services
           </p>
           <h2 className="font-mono text-3xl font-semibold leading-tight text-[#E7E5DE] sm:text-4xl md:text-[2.75rem]">
             <span className="block text-lg text-[#4B5063] sm:text-xl">/**</span>
-            Technical Skills
+            What I Do
             <span className="block text-lg text-[#4B5063] sm:text-xl">*/</span>
           </h2>
           <p className="mt-4 max-w-xl font-sans text-[15px] leading-relaxed text-[#8B8F9C]">
-            The tools, languages, and platforms behind every project — grouped
-            the way they&apos;d sit in a dependency file.
+            Six functions, one goal: websites that are fast, flexible, and built to
+            hold up under real business requirements.
           </p>
         </div>
 
@@ -139,16 +134,16 @@ export default function TechnicalSkills() {
               <span className="h-2.5 w-2.5 rounded-full bg-[#28C840]" />
             </div>
             <div className="flex items-center rounded-t border-x border-t border-[#2A2E3A] bg-[#14161C] px-3 py-1.5">
-              <span className="font-mono text-xs text-[#8B8F9C]">technical-skills.json</span>
+              <span className="font-mono text-xs text-[#8B8F9C]">what-i-do.php</span>
             </div>
           </div>
 
           {/* Code body */}
           <div className="py-4 sm:py-5">
             {rows.map((row, i) => {
-              const idx = row.type === 'category' ? row.index : null;
+              const idx = 'index' in row ? row.index : null;
               const isActive = idx !== null && active === idx;
-              const accent = idx !== null ? categories[idx].accent : undefined;
+              const accent = idx !== null ? services[idx].accent : undefined;
 
               const handlers =
                 idx !== null
@@ -186,18 +181,14 @@ export default function TechnicalSkills() {
           <div className="flex items-center justify-between gap-4 border-t border-[#2A2E3A] bg-[#1B1E27] px-4 py-2.5 sm:px-6">
             <span className="truncate font-mono text-[11px] text-[#6B7280] sm:text-xs">
               {active !== null
-                ? `technicalSkills.${categories[active].key}`
-                : `${categories.length} categories · hover to expand`}
+                ? services[active].file
+                : `${services.length} services · hover to preview`}
             </span>
             <span className="hidden shrink-0 items-center gap-3 font-mono text-[11px] text-[#6B7280] sm:flex sm:text-xs">
-              <span>
-                {active !== null
-                  ? `Ln ${lineNumberFor(active)} · ${categories[active].skills.length} skills`
-                  : `JSON · ${totalSkills} total`}
-              </span>
+              <span>{active !== null ? `Ln ${lineNumberFor(active)}, Col 3` : 'UTF-8'}</span>
               <span className="flex items-center gap-1.5 text-[#7EC699]">
-                <span aria-hidden="true">✓</span>
-                valid JSON
+                <span className="h-1.5 w-1.5 rounded-full bg-[#7EC699] motion-safe:animate-pulse" />
+                Available for projects
               </span>
             </span>
           </div>
@@ -209,47 +200,42 @@ export default function TechnicalSkills() {
 
 function RowContent({ row }: { row: Row }) {
   switch (row.type) {
-    case 'brace-open':
-      return <span className="font-mono text-sm text-[#E7E5DE] sm:text-[15px]">{'{'}</span>;
-    case 'root-open':
+    case 'class-open':
       return (
-        <span className="pl-4 font-mono text-sm sm:pl-6 sm:text-[15px]">
-          <span className="text-[#4B5063]">&quot;</span>
-          <span className="text-[#E7E5DE]">technicalSkills</span>
-          <span className="text-[#4B5063]">&quot;: </span>
-          <span className="text-[#E7E5DE]">{'{'}</span>
+        <span className="font-mono text-sm text-[#E7E5DE] sm:text-[15px]">
+          <span className="text-[#A78BFA]">class </span>WhatIDo {'{'}
         </span>
       );
-    case 'category': {
-      const c = categories[row.index];
+    case 'class-close':
       return (
-        <p className="pl-8 pr-2 font-mono text-[13px] leading-relaxed sm:pl-10 sm:text-[14px]">
-          <span className="text-[#4B5063]">&quot;</span>
-          <span className="font-semibold" style={{ color: c.accent }}>
-            {c.key}
+        <span className="font-mono text-sm text-[#E7E5DE] sm:text-[15px]">{'}'}</span>
+      );
+    case 'blank':
+      return <span className="block h-5">&nbsp;</span>;
+    case 'method-open': {
+      const s = services[row.index];
+      return (
+        <span className="pl-4 font-mono text-sm sm:pl-6 sm:text-[15px]">
+          <span className="font-semibold" style={{ color: s.accent }}>
+            {s.fnName}
           </span>
-          <span className="text-[#4B5063]">&quot;: </span>
-          <span className="text-[#E7E5DE]">[ </span>
-          {c.skills.map((skill, i) => (
-            <span key={skill}>
-              <span className="text-[#4B5063]">&quot;</span>
-              <span className="text-[#E7E5DE]">{skill}</span>
-              <span className="text-[#4B5063]">&quot;</span>
-              <span className="text-[#4B5063]">{i < c.skills.length - 1 ? ', ' : ' '}</span>
-            </span>
-          ))}
-          <span className="text-[#E7E5DE]">]</span>
-          <span className="text-[#4B5063]">,</span>
+          <span className="text-[#E7E5DE]">() {'{'}</span>
+        </span>
+      );
+    }
+    case 'comment': {
+      const s = services[row.index];
+      return (
+        <p className="pl-8 pr-2 font-sans text-[13.5px] leading-relaxed text-[#8FA98B] sm:pl-10 sm:text-[14.5px]">
+          // {s.description}
         </p>
       );
     }
-    case 'root-close':
+    case 'method-close':
       return (
         <span className="pl-4 font-mono text-sm text-[#E7E5DE] sm:pl-6 sm:text-[15px]">
           {'}'}
         </span>
       );
-    case 'brace-close':
-      return <span className="font-mono text-sm text-[#E7E5DE] sm:text-[15px]">{'}'}</span>;
   }
 }

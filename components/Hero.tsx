@@ -8,39 +8,23 @@ export default function Hero() {
       <Reveal>
         <div className="eyebrow">About Sherwin</div>
         <h1 className="font-display font-semibold text-[34px] sm:text-[44px] md:text-[56px] leading-[1.05] tracking-tight">
-          {profile.name}
+          {profile.role}
         </h1>
-        <p className="mt-3.5 text-[17px] text-ink-soft max-w-[46ch] leading-relaxed">{profile.tagline}</p>
-
+        <p className="mt-3.5 text-[18px] font-bold text-ink-soft max-w-[46ch] leading-relaxed">{profile.tagline}</p>
+              <p className="mt-3.5 text-[15.5px] text-ink-soft max-w-10/12 leading-relaxed">{profile.shortBio}</p>
         <div className="flex gap-3.5 mt-8 flex-wrap">
-          <a className="btn btn-primary" href={`mailto:${profile.email}`}>
+          <a className="btn btn-primary" href="#work">
+            View My Work
+          </a>
+          <a className="btn btn-ghost" href={`mailto:${profile.email}`}>
             Email me
           </a>
-          <a className="btn btn-ghost" href="#work">
-            View featured work
-          </a>
         </div>
 
-        <div className="flex gap-9 mt-12 flex-wrap">
-          <div className="font-mono text-[11px] text-ink-soft uppercase tracking-[0.05em]">
-            Location
-            <strong className="block font-body text-sm text-ink font-semibold normal-case tracking-normal mt-1">
-              {profile.locationShort}
-            </strong>
-          </div>
-          <div className="font-mono text-[11px] text-ink-soft uppercase tracking-[0.05em]">
-            Experience
-            <strong className="block font-body text-sm text-ink font-semibold normal-case tracking-normal mt-1">
-              {profile.experience}
-            </strong>
-          </div>
-          <div className="font-mono text-[11px] text-ink-soft uppercase tracking-[0.05em]">
-            Education
-            <strong className="block font-body text-sm text-ink font-semibold normal-case tracking-normal mt-1">
-              {profile.education}
-            </strong>
-          </div>
-        </div>
+        <p className="mt-5 text-[12px] font-mono text-ink-soft leading-relaxed">
+          Based in the Philippines · GMT+8 · Available for remote work
+        </p>
+
       </Reveal>
 
       <Reveal>

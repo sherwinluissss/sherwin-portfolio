@@ -10,14 +10,14 @@ const facts = [
 
 export default function About() {
   return (
-    <section id="about" className="py-20 md:py-24 border-t border-line grid md:grid-cols-2 gap-16">
+    <section id="about" className="py-20 md:py-24 border-t border-line grid md:grid-cols-2 gap-16 items-center">
       <Reveal>
         <div className="eyebrow">About</div>
         <h2 className="font-display font-semibold text-[24px] md:text-[32px] mb-5 leading-tight">
           Building reliable web experiences, from Mindanao to the world.
         </h2>
         {profile.bio.map((p, i) => (
-          <p key={i} className="text-ink-soft leading-relaxed text-[15.5px] mb-4 last:mb-0">
+          <p key={i} className="text-ink-soft leading-relaxed text-[15.5px] mb-4 last:mb-0 last:font-bold">
             {p}
           </p>
         ))}

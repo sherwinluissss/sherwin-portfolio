@@ -1,11 +1,15 @@
 export const profile = {
   name: 'Sherwin Luis Morantte',
-  role: 'Web Developer',
+  role: 'Senior Web Developer',
   tagline:
-    'Web Developer building storefronts, brochure sites, and integrations for clients across Southeast Asia and Europe — with an eye for detail and a habit of shipping things that hold up.',
-  bio: [
-    "I'm a Full-Stack Web Developer from the Philippines with over eight years of professional experience. Throughout my career, I've worked with startups, agencies, and established businesses, building everything from business websites and e-commerce stores to membership platforms and custom web applications. My expertise includes custom WordPress theme and plugin development, REST API integrations, performance optimization, technical SEO, and turning Figma designs into pixel-perfect, responsive websites.",
-    'I spend most of my time exploring new corners of web development and enjoy the problem-solving side of the work most — weighing a few approaches before settling on the one that fits. The goal is simple: keep getting better at the craft.',
+    'Building high-performance WordPress and Shopify websites, eCommerce experiences, and custom web solutions.',
+  shortBio: "I’m a Web Developer with 8+ years of experience building and maintaining WordPress and Shopify websites, WooCommerce stores, custom integrations, and modern web applications for businesses and agencies worldwide.",
+    bio: [
+      "I’m a Web Developer with 8+ years of professional experience specializing in WordPress development, custom web solutions, and eCommerce.",
+      "I build websites and applications that go beyond standard themes and page builders—from custom WordPress themes and plugins to WooCommerce functionality, third-party integrations, APIs, and performance optimization.",
+      "My experience also extends into modern JavaScript development, React, Next.js, and headless architectures, allowing me to work across both traditional WordPress projects and modern web applications.",
+      "I’m comfortable working independently or as part of a distributed team, collaborating with designers, developers, project managers, and clients to turn requirements into reliable, maintainable products.",
+      "My approach is simple: understand the problem, choose the right technology, and build something that works well for both the user and the business."
   ],
   location: 'Tagum City, Davao del Norte, Philippines',
   locationShort: 'Tagum City, PH',
@@ -18,6 +22,32 @@ export const profile = {
   phone: '+63 975 508 7035',
   phoneHref: '+639755087035',
   portrait: '/assets/img/hero.jpg',
+  whatIDo: [
+    {
+      title: 'Custom WordPress Development',
+      description: 'Custom themes, plugins, templates, Gutenberg/ACF components, custom post types, taxonomies, and functionality built around specific business requirements.',     
+    },
+    {
+      title: 'WooCommerce & eCommerce',
+      description: 'Custom WooCommerce functionality, product experiences, checkout improvements, integrations, and performance optimization for online stores.',
+    },
+    {
+      title: 'Web Integrations',
+      description: 'REST APIs, third-party services, forms, CRM integrations, payment services, analytics, and custom data-driven functionality.',
+    },
+    {
+      title: 'Performance & Optimization',
+      description: 'Improving Core Web Vitals, page speed, caching, images, database performance, and third-party scripts to create faster and more reliable websites.'
+    },
+    {
+      title: 'Modern Web Development',
+      description: 'React, Next.js, headless WordPress, and modern JavaScript development for web applications and custom solutions.'
+    },
+    {
+      title: 'Maintenance & Problem Solving',
+      description: 'Debugging complex WordPress issues, security problems, migrations, hosting issues, plugin conflicts, and ongoing website maintenance.'
+    }
+  ]
 };
 
 export type SkillLevel = 'Advanced' | 'Proficient' | 'Working knowledge';
